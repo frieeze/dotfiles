@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Copy all files in the current directory to ~/.config
+for d in $(ls -d */ | sed "s/\// /g"); do
+	echo "stow $d"
+	stow -t $HOME $d
+done
+
+exit 0
+
+echo "adding custom commands/aliases to bashrc"
+# if gitclean command is defined, then add it to bashrc
+if ! (grep -Fq "gitclean ()" ~/.bashrc); then
+	echo "adding aliases to bashrc"
+	cat bashrc >> ~/.bashrc
+fi
+

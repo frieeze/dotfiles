@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for d in $(ls -d */ | sed "s/\// /g"); do
+	echo "remove $d"
+	stow -D -t $HOME $d
+done
